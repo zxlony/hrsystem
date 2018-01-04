@@ -10,9 +10,10 @@
 	$(function(){
 		$(":text[name='uname']").blur(function(){
 			var name=$(this).val();
-			if(name.length==0){
+			if(name==""){
 				$(".name").text("用户名不能为空！");
 				$(":submit").attr("disabled",true);
+				return;
 			}
 			$.ajax({
 				url:"${pageContext.request.contextPath}/user/getName",
@@ -25,7 +26,9 @@
 						$(":submit").attr("disabled",true);
 					}else{
 						$(".name").text("");
-						$(":submit").attr("disabled",false);
+						if($(".psd").text()==""){
+							$(":submit").attr("disabled",false);
+						}
 					}
 				}
 			})
@@ -39,41 +42,58 @@
 				$(":submit").attr("disabled",true);
 			}else{
 				$(".psd").text("");
-				$(":submit").attr("disabled",false);
+				if($(".name").text()==""){
+					$(":submit").attr("disabled",false);
+				}
 			}
 		})
 	})
+	
+	function res(){
+		var name1=$(":text[name='uname']").val();
+		var psd3=$(":password[name='psd']").val();
+		var psd4=$(":password[name='password']").val();
+		if(name1==""){
+			alert("用户名不能为空！");
+			return false;
+		}
+		if(psd3==""||psd4==""){
+			alert("密码不能为空！")
+			return false;
+		}
+		return true;
+	}
 </script>
 <style type="text/css">
 	span{
 		color:#666;
-		font-size: 10px;
+		font-size: 12px;
 	}
 </style>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/user/register" method="post">
-		<table align="center" cellpadding="10" cellspacing="0" border="1">
+	<form action="${pageContext.request.contextPath}/user/register" method="post" onsubmit="return res()">
+		<table align="center" cellpadding="10" cellspacing="0" border="1" width="380">
 			<tr>
-				<td colspan="2"><h2>注册</h2></td>
+				<td colspan="2" align="center"><h2>注册</h2></td>
 			</tr>
 			<tr>
-				<td>用 户 名：</td>
+				<td align="right" width="25%">用 户 名</td>
 				<td><input type="text" name="uname" />&nbsp;<span class="name"></span></td>
 			</tr>
 		<tr>
-				<td>设置密码：</td>
+				<td align="right">设置密码</td>
 				<td><input type="password" name="psd" /></td>
 			</tr>
 			<tr>
-				<td>确认密码：</td>
+				<td align="right">确认密码</td>
 				<td><input type="password" name="password" />&nbsp;<span class="psd"></span></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="注册" /></td>
+				<td colspan="2" align="center"><input type="submit" value="注册" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="reset" value="取消" /></td>
+				<td colspan="2" align="center"><input type="reset" value="取消" /></td>
 			</tr>
 		</table>
 	</form>
