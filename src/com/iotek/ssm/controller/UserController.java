@@ -43,17 +43,23 @@ public class UserController {
 			return "forward:/login.jsp";
 		}else {
 			session.setAttribute("user", user);
-			if(user.getType()==0) {
-				return "user_index";
-			}
-			if(user.getType()==1) {
-				return "admin_index";
-			}
-			if(user.getType()==2) {
-				return "employee_index";
-			}
-			return "manager_index";
+			return "loginSuccess";
 		}
+	}
+	
+	@RequestMapping("view")
+	public String view(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user.getType()==0) {
+			return "user_index";
+		}
+		if(user.getType()==1) {
+			return "admin_index";
+		}
+		if(user.getType()==2) {
+			return "employee_index";
+		}
+		return "manager_index";
 	}
 	
 }

@@ -5,6 +5,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录界面</title>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(":text[name='uname']").blur(function(){
+			var name=$(this).val();
+			if(name==""){
+				$(".name").text("用户名不能为空！");
+				$(":submit").attr("disabled",true);
+				return;
+			}
+			$.ajax({
+				url:"${pageContext.request.contextPath}/user/getName",
+				type:"post",
+				dataType:"text",
+				data:{uname:name},
+				success:function(data){
+					if(data=="1"){
+						$(".name").text("");
+						$(":submit").attr("disabled",false);
+					}else{
+						$(".name").text("用户名不存在！");
+						$(":submit").attr("disabled",true);
+					}
+				}
+			})
+		})
+	})
+</script>
 <style type="text/css">
 	p {
 		color: red;
@@ -18,6 +47,7 @@
 	
 	span {
 		color: red;
+		font-size: 13px;
 	}
 </style>
 </head>
@@ -32,7 +62,7 @@
 			</tr>
 			<tr>
 				<td align="right" width="25%">用 户 名</td>
-				<td><input type="text" name="uname" /></td>
+				<td><input type="text" name="uname" />&nbsp;<span class="name"></span></td>
 			</tr>
 			<tr>
 				<td  align="right">密　码</td>
