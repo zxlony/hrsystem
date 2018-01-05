@@ -151,4 +151,14 @@ public class Resume {
 		this.hobby = hobby;
 	}
 
+	@Override
+	public String toString() {
+		return "Resume [rid=" + rid + ", uid=" + uid + ", name=" + name + ", sex=" + sex + ", age=" + age
+				+ ", education=" + education + ", phone=" + phone + ", email=" + email + ", jobApplied=" + jobApplied
+				+ ", status=" + status + ", lastJob=" + lastJob + ", experience=" + experience + ", expectSalary="
+				+ expectSalary + ", hobby=" + hobby + "]";
+	}
+	
+	
+
 }

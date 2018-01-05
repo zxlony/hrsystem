@@ -5,5 +5,7 @@ import com.iotek.ssm.entity.Resume;
 public interface ResumeDao {
 
 	public Resume queryResumeByUid(int uid);
+	
+	public int insertResume(Resume resume);
 
 }

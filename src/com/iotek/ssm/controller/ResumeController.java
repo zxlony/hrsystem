@@ -29,6 +29,24 @@ public class ResumeController {
 		List<Dept> depts = deptService.findAllDept();
 		session.setAttribute("depts", depts);
 		model.addAttribute("resume", resume);
+		if(resume!=null) {
+			String jobApplied = resume.getJobApplied();
+			String[] split = jobApplied.split(" ");
+			String deptStr = split[0];
+			String postStr = split[1];
+			model.addAttribute("deptStr", deptStr);
+			model.addAttribute("postStr", postStr);
+		}
 		return "showMyResume";
+	}
+	
+	@RequestMapping("insertResume")
+	public String insertResume(Resume resume,String post) {
+		System.out.println(resume);
+		System.out.println(post);
+		String jobApplied1 = resume.getJobApplied()+" "+post;
+		resume.setJobApplied(jobApplied1);
+//		resumeService.addResume(resume);
+		return "user_index";
 	}
 }
