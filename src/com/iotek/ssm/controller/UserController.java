@@ -62,4 +62,17 @@ public class UserController {
 		return "manager_index";
 	}
 	
+	@RequestMapping("changePwd")
+	public String changePwd() {
+		return "changePassword";
+	}
+	
+	@RequestMapping("updatePwd")
+	public String updatePwd(HttpSession session,String password) {
+		User user = (User) session.getAttribute("user");
+		user.setPassword(password);
+		userService.updateUser(user);
+		return "redirect:/login.jsp";
+	}
+	
 }

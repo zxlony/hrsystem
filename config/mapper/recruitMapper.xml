@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.RecruitDao">
+
+	<select id="queryAllRecruit" resultType="Recruit">
+		select * from recruit
+	</select>
+	
+	<insert id="insertRecruit" parameterType="Recruit">
+		insert into recruit(job,describe,address,pubdate)
+		values(#{job},#{describe},#{address},#{pubdate})
+	</insert>
+	
+	<delete id="deleteRecruit" parameterType="int">
+		delete from recruit where rid=#{rid}
+	</delete>
+	
+	<update id="updateRecruit" parameterType="Recruit">
+		update recruit set job=#{job},describe=#{describe},address=#{address} where rid=#{rid}
+	</update>
+	
+	
+</mapper>

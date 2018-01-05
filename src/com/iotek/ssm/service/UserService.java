@@ -9,4 +9,6 @@ public interface UserService {
 	public User findUserByNameAndPsd(String uname,String password);
 	
 	public int addUser(User user);
+
+	public int updateUser(User user);
 }

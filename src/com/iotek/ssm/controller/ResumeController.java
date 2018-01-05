@@ -42,11 +42,9 @@ public class ResumeController {
 	
 	@RequestMapping("insertResume")
 	public String insertResume(Resume resume,String post) {
-		System.out.println(resume);
-		System.out.println(post);
 		String jobApplied1 = resume.getJobApplied()+" "+post;
 		resume.setJobApplied(jobApplied1);
-//		resumeService.addResume(resume);
+		resumeService.addResume(resume);
 		return "user_index";
 	}
 }

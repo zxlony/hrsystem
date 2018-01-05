@@ -10,4 +10,6 @@ public interface UserDao {
 	public User queryUserByNameAndPsd(@Param("uname") String uname, @Param("password") String password);
 	
 	public int insertUser(User user);
+
+	public int updateUser(User user);
 }
