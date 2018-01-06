@@ -117,6 +117,7 @@
 			<td colspan="2" align="center"><input type="button" value="返回" onclick="javascript:history.back(-1);"/></td>
 		</tr>
 	</table>
+	<p align="center" style="color:red">${error}</p>
 	</form>
 	</c:if>
 	
@@ -220,6 +221,7 @@
 			<td colspan="2" align="center"><input type="button" value="返回" onclick="javascript:history.back(-1);"/></td>
 		</tr>
 	</table>
+	<p align="center" style="color:red">${error}</p>
 	</form>
 	</c:if>
 	

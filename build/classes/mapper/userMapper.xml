@@ -6,6 +6,10 @@
 	<select id="queryUserByName" parameterType="String" resultType="User">
 		select * from user where uname=#{uname}
 	</select>
+
+	<select id="queryUserById" resultType="User">
+		select * from user where uid=#{uid}
+	</select>
 	
 	<select id="queryUserByNameAndPsd" parameterType="String" resultType="User">
 		select * from user where uname=#{uname} and password=#{password}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.ApplyDao">
+	
+	<select id="queryAllApply" resultType="Apply">
+		select * from apply
+	</select>
+	
+	<select id="queryApplyByUname" parameterType="String" resultType="Apply">
+		select * from apply where uname=#{uname}
+	</select>
+	
+	<insert id="insertApply" parameterType="Apply">
+		insert into apply(uname,deliveryTime,checkStatus,interviewStatus,interviewTime,hiring)
+		values(#{uname},#{deliveryTime},#{checkStatus},#{interviewStatus},#{interviewTime},#{hiring})
+	</insert>
+	
+	<delete id="deleteApply" parameterType="int">
+		delete from apply where aid=#{aid}
+	</delete>
+	
+	<update id="updateApply" parameterType="Apply">
+		update apply set checkStatus=#{checkStatus},interviewStatus=#{interviewStatus},
+			interviewTime=#{interviewTime},hiring=#{hiring}
+		where aid=#{aid}
+	</update>
+	
+</mapper>

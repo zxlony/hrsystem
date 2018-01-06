@@ -17,7 +17,7 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/recruit/addRecruit">增加招聘信息</a></li>
                     <li><a href="${pageContext.request.contextPath}/recruit/lookRecruit">查看招聘信息</a></li>
-                    <li><a href="#">查看已投简历</a></li>
+                    <li><a href="${pageContext.request.contextPath}/apply/lookApply">查看已投简历</a></li>
                 </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">

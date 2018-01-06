@@ -12,4 +12,6 @@ public interface UserDao {
 	public int insertUser(User user);
 
 	public int updateUser(User user);
+
+	public User queryUserById(int uid);
 }
