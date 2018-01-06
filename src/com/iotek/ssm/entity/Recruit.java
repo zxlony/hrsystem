@@ -5,18 +5,18 @@ import java.util.Date;
 public class Recruit {
 	private int rid;
 	private String job;
-	private String describe;
+	private String description;
 	private String address;
 	private Date pubdate;
 
 	public Recruit() {
 	}
 
-	public Recruit(int rid, String job, String describe, String address, Date pubdate) {
+	public Recruit(int rid, String job, String description, String address, Date pubdate) {
 		super();
 		this.rid = rid;
 		this.job = job;
-		this.describe = describe;
+		this.description = description;
 		this.address = address;
 		this.pubdate = pubdate;
 	}
@@ -37,12 +37,12 @@ public class Recruit {
 		this.job = job;
 	}
 
-	public String getDescribe() {
-		return describe;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getAddress() {
@@ -63,7 +63,7 @@ public class Recruit {
 
 	@Override
 	public String toString() {
-		return "Recruit [rid=" + rid + ", job=" + job + ", describe=" + describe + ", address=" + address + ", pubdate="
+		return "Recruit [rid=" + rid + ", job=" + job + ", description=" + description + ", address=" + address + ", pubdate="
 				+ pubdate + "]";
 	}
 

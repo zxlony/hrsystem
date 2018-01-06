@@ -165,7 +165,9 @@
 						<c:if test="${deptStr==dept.dname}">
 							<option value="${dept.dname}" selected="selected">${dept.dname}</option>
 						</c:if>
-						<option value="${dept.dname}">${dept.dname}</option>
+						<c:if test="${deptStr!=dept.dname}">
+							<option value="${dept.dname}">${dept.dname}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 				<!-- 多个select -->
@@ -175,7 +177,9 @@
 							<c:if test="${postStr==p.pname}">
 								<option value="${p.pname}" selected="selected">${p.pname}</option>
 							</c:if>
-							<option value="${p.pname}">${p.pname}</option>
+							<c:if test="${postStr!=p.pname}">
+								<option value="${p.pname}">${p.pname}</option>
+							</c:if>
 						</c:forEach>
 					</select>
 				</c:forEach>			

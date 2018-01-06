@@ -7,9 +7,12 @@
 		select * from recruit
 	</select>
 	
+	<select id="queryRecruitByRid" resultType="Recruit">
+		select * from recruit where rid=#{rid}
+	</select>
+	
 	<insert id="insertRecruit" parameterType="Recruit">
-		insert into recruit(job,describe,address,pubdate)
-		values(#{job},#{describe},#{address},#{pubdate})
+		insert into recruit(job,description,address,pubdate)values(#{job},#{description},#{address},#{pubdate})
 	</insert>
 	
 	<delete id="deleteRecruit" parameterType="int">
@@ -17,8 +20,7 @@
 	</delete>
 	
 	<update id="updateRecruit" parameterType="Recruit">
-		update recruit set job=#{job},describe=#{describe},address=#{address} where rid=#{rid}
+		update recruit set job=#{job},description=#{description},address=#{address} where rid=#{rid}
 	</update>
-	
 	
 </mapper>

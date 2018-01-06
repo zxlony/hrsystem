@@ -12,4 +12,6 @@ public interface RecruitService {
 	public int delRecruit(int rid);
 	
 	public int updateRecruit(Recruit recruit);
+
+	public Recruit findRecruitByRid(int rid);
 }

@@ -47,4 +47,12 @@ public class ResumeController {
 		resumeService.addResume(resume);
 		return "user_index";
 	}
+	
+	@RequestMapping("updateResume")
+	public String updateResume(Resume resume,String post) {
+		String jobApplied1 = resume.getJobApplied()+" "+post;
+		resume.setJobApplied(jobApplied1);
+		resumeService.updateResume(resume);
+		return "user_index";
+	}
 }

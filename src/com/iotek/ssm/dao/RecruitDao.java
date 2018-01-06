@@ -12,4 +12,6 @@ public interface RecruitDao {
 	public int deleteRecruit(int rid);
 	
 	public int updateRecruit(Recruit recruit);
+
+	public Recruit queryRecruitByRid(int rid);
 }

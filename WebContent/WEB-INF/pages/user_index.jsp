@@ -25,7 +25,7 @@
 		<ul>
 			<li><a href="#">反馈</a></li>
 			<li><a href="${pageContext.request.contextPath}/resume/lookResume?uid=${sessionScope.user.uid}">查看简历</a></li>
-			<li><a href="#">招聘信息</a></li>
+			<li><a href="${pageContext.request.contextPath}/recruit/userLookRecruit">招聘信息</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/changePwd">修改密码</a></li>
 			<li><a href="#">其它</a></li>
 			<li><a href="${pageContext.request.contextPath}/login.jsp" class="exit">退出</a></li>

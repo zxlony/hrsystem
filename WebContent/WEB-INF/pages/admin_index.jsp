@@ -15,8 +15,8 @@
         	<li onmouseover="display(this)" onmouseout="hide(this)">
                 <a href="javascript:;">招聘管理</a>
                 <ul>
-                    <li><a href="#">增加招聘信息</a></li>
-                    <li><a href="#">查看招聘信息</a></li>
+                    <li><a href="${pageContext.request.contextPath}/recruit/addRecruit">增加招聘信息</a></li>
+                    <li><a href="${pageContext.request.contextPath}/recruit/lookRecruit">查看招聘信息</a></li>
                     <li><a href="#">查看已投简历</a></li>
                 </ul>
             </li>

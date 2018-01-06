@@ -37,4 +37,9 @@ public class RecruitServiceImpl implements RecruitService {
 		return recruitDao.updateRecruit(recruit);
 	}
 
+	@Override
+	public Recruit findRecruitByRid(int rid) {
+		return recruitDao.queryRecruitByRid(rid);
+	}
+
 }

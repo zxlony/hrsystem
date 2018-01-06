@@ -7,5 +7,7 @@ public interface ResumeService {
 	public Resume findResumeByUid(int uid);
 	
 	public int addResume(Resume resume);
+
+	public int updateResume(Resume resume);
 	
 }

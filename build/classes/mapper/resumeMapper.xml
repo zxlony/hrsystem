@@ -13,5 +13,13 @@
 				#{lastJob},#{experience},#{expectSalary},#{hobby})
 	</insert>
 	
+	<update id="updateResume" parameterType="Resume">
+		update resume set 
+		name=#{name},sex=#{sex},age=#{age},education=#{education},phone=#{phone},
+		email=#{email},jobApplied=#{jobApplied},status=#{status},lastJob=#{lastJob},
+		experience=#{experience},expectSalary=#{expectSalary},hobby=#{hobby} 
+		where uid=#{uid}
+	</update>
+	
 	
 </mapper>
