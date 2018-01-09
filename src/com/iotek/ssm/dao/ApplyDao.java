@@ -14,4 +14,10 @@ public interface ApplyDao {
 	public int  deleteApply(int aid);
 	
 	public int updateApply(Apply apply);
+
+	public Apply queryApplyByAid(int aid);
+
+	public Apply queryApplyByUnameAndInterviewStatus(String uname);
+
+	public List<Apply> queryApplyByInterviewStatus();
 }

@@ -1,5 +1,7 @@
 package com.iotek.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class MsgServiceImpl implements MsgService {
 	}
 
 	@Override
-	public Msg findMsgByUid(int uid) {
+	public List<Msg> findMsgByUid(int uid) {
 		return msgDao.queryMsgByUid(uid);
 	}
 

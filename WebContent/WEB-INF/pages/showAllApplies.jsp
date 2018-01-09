@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1" cellpadding="10" cellspacing="0" align="center">
+	<table border="1" cellpadding="10" cellspacing="0" align="center" width="520">
 		<tr>
 			<td>应聘者</td>
 			<td>投递时间</td>
@@ -23,10 +23,15 @@
 			<td><f:formatDate value="${apply.deliveryTime}" pattern="yyyy-MM-dd"/></td>
 			<td>${apply.checkStatus}</td>
 			<td>${apply.interviewStatus}</td>
-			<td><a href="${pageContext.request.contextPath}/apply/lookResume?uname=${apply.uname}">查看</a></td>
-			<td><a href="${pageContext.request.contextPath}/apply/delapply?aid=${apply.aid}" name="del">删除</a></td>
+			<td><a href="${pageContext.request.contextPath}/apply/lookResume?uname=${apply.uname}&aid=${apply.aid}">
+				<c:if test="${apply.checkStatus=='未查看'||apply.interviewStatus=='未面试'}">查看</c:if>
+			</a></td>
+			<td><a href="${pageContext.request.contextPath}/apply/delApply?aid=${apply.aid}" name="del">
+				<c:if test="${apply.interviewStatus!='按时面试'&&apply.interviewStatus!='确认面试'}">删除</c:if>
+			</a></td>
 		</tr>
 		</c:forEach>
 	</table>
+	<p align="center" style="color: red;">${error}</p>
 </body>
 </html>

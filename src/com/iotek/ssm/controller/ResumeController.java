@@ -71,11 +71,13 @@ public class ResumeController {
 			}
 		}
 		model.addAttribute("error", "您应聘的职位不存在");
-		return "showMyResume";
+		return "forward:/resume/lookResume";
 	}
 	
 	/**
-	 * 更新简历，如果应聘的职位不存在，给出提示，如果存在，则判断应聘职位有没有修改，若修改，则生成应聘信息表
+	 * 这里规定用户只能应聘一个职位，不能同时应聘多个职位,当有职位正在面试时，不能应聘其它职位
+	 * 更新简历，如果应聘的职位不存在，给出提示，如果存在，则判断应聘职位有没有修改，
+	 * 若修改，则还要判断前面应聘的职位有没有删除或面试完成，有没有则生成应聘信息表
 	 * @param resume
 	 * @param post
 	 * @return
@@ -83,6 +85,7 @@ public class ResumeController {
 	@RequestMapping("updateResume")
 	public String updateResume(Resume resume,String post,Model model) {
 		String jobApplied1 = resume.getJobApplied()+" "+post;
+		resume.setJobApplied(jobApplied1);
 		Resume resume1 = resumeService.findResumeByUid(resume.getUid());
 		if(jobApplied1.equals(resume1.getJobApplied())) {
 			resumeService.updateResume(resume);
@@ -91,16 +94,24 @@ public class ResumeController {
 			List<Recruit> allRecruit = recruitService.findAllRecruit();
 			for (Recruit recruit : allRecruit) {
 				if(jobApplied1.equals(recruit.getJob())) {
-					resume.setJobApplied(jobApplied1);
 					User user = userService.findUserById(resume.getUid());
-					Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0);
-					applyService.addApply(apply);
-					resumeService.addResume(resume);
-					return "user_index";
+					Apply oldApply = applyService.findApplyByUname(user.getUname());
+					if((oldApply!=null)&&(oldApply.getInterviewStatus().equals("按时面试")||oldApply.getInterviewStatus().equals("确认面试"))) {
+						model.addAttribute("error", "您有其它职位正在面试，不能应聘当前职位");
+						return "forward:/resume/lookResume";
+					}else {
+						if(oldApply!=null) {
+							applyService.delApply(oldApply.getAid());
+						}
+						Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0);
+						applyService.addApply(apply);
+						resumeService.updateResume(resume);
+						return "user_index";
+					}
 				}
 			}
 			model.addAttribute("error", "您应聘的职位不存在");
-			return "showMyResume";
+			return "forward:/resume/lookResume";
 		}
 	}
 }

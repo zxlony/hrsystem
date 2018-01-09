@@ -14,4 +14,10 @@ public interface ApplyService {
 	public int delApply(int aid);
 
 	public int updateApply(Apply apply);
+
+	public Apply findApplyByAid(int aid);
+
+	public Apply findApplyByUnameAndInterviewStatus(String uname);
+
+	public List<Apply> findApplyByInterviewStatus();
 }

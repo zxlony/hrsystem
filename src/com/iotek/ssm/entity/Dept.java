@@ -6,16 +6,18 @@ import java.util.List;
 public class Dept {
 	private int did;
 	private String dname;
+	private int uid;
 	private List<Post> posts = new ArrayList<>();
 
 	public Dept() {
 		super();
 	}
 
-	public Dept(int did, String dname, List<Post> posts) {
+	public Dept(int did, String dname, int uid, List<Post> posts) {
 		super();
 		this.did = did;
 		this.dname = dname;
+		this.uid = uid;
 		this.posts = posts;
 	}
 
@@ -35,6 +37,14 @@ public class Dept {
 		this.dname = dname;
 	}
 
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
 	public List<Post> getPosts() {
 		return posts;
 	}
@@ -45,7 +55,7 @@ public class Dept {
 
 	@Override
 	public String toString() {
-		return "Dept [did=" + did + ", dname=" + dname + ", posts=" + posts + "]";
+		return "Dept [did=" + did + ", dname=" + dname + ", uid=" + uid + ", posts=" + posts + "]";
 	}
 
 }

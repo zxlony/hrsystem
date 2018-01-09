@@ -40,4 +40,19 @@ public class ApplyServiceImpl implements ApplyService {
 		return applyDao.updateApply(apply);
 	}
 
+	@Override
+	public Apply findApplyByAid(int aid) {
+		return applyDao.queryApplyByAid(aid);
+	}
+
+	@Override
+	public Apply findApplyByUnameAndInterviewStatus(String uname) {
+		return applyDao.queryApplyByUnameAndInterviewStatus(uname);
+	}
+
+	@Override
+	public List<Apply> findApplyByInterviewStatus() {
+		return applyDao.queryApplyByInterviewStatus();
+	}
+
 }

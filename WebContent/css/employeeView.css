@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#left{
+	float: left;
+	margin: 25px 70px;
+	width:160px;
+}
+
+#left ul li{
+	height: 50px;
+	line-height: 50px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#left ul li a{
+	display:inline-block;
+	text-decoration:none;
+	height: 50px;
+	width: 100%;
+}
+
+#left ul li a:hover {
+	font-size:26px;
+	font-weight:normal;
+	color:red;
+	text-decoration:underline;
+}

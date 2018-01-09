@@ -1,5 +1,7 @@
 package com.iotek.ssm.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iotek.ssm.entity.Msg;
 import com.iotek.ssm.entity.User;
+import com.iotek.ssm.service.MsgService;
 import com.iotek.ssm.service.UserService;
 
 @RequestMapping("user")
@@ -17,6 +21,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MsgService msgService;
 	
 	@RequestMapping("/getName")
 	@ResponseBody
@@ -48,8 +54,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("view")
-	public String view(HttpSession session) {
+	public String view(HttpSession session,Model model) {
 		User user = (User) session.getAttribute("user");
+		List<Msg> msgs = msgService.findMsgByUid(user.getUid());
+		model.addAttribute("msgs", msgs);
 		if(user.getType()==0) {
 			return "user_index";
 		}

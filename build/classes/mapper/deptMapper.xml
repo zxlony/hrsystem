@@ -6,6 +6,7 @@
 	<resultMap id="deptMap" type="Dept">
         <id property="did" column="did"/>
         <result property="dname" column="dname"/>
+        <result property="uid" column="uid"/>
 
         <collection property="posts" ofType="Post">
             <id property="pid" column="pid"/>
@@ -15,6 +16,10 @@
 
 	<select id="queryAllDept" resultMap="deptMap">
 		select dept.*,post.* from dept,post where dept.did=post.did
+	</select>
+	
+	<select id="queryDeptByDname" parameterType="String" resultType="Dept">
+		select * from dept where dname=#{dname}
 	</select>
 	
 	

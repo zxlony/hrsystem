@@ -26,4 +26,16 @@
 		where aid=#{aid}
 	</update>
 	
+	<select id="queryApplyByAid" parameterType="int" resultType="Apply">
+		select * from apply where aid=#{aid}
+	</select>
+	
+	<select id="queryApplyByUnameAndInterviewStatus" parameterType="String" resultType="Apply">
+		select * from apply where uname=#{uname} and interviewStatus="按时面试"
+	</select>
+	
+	<select id="queryApplyByInterviewStatus" resultType="Apply">
+		select * from apply where interviewStatus="确认面试"
+	</select>
+	
 </mapper>
