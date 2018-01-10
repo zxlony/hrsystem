@@ -26,7 +26,7 @@
 				}
 			}
 		})
-		
+	
 		$(".start").click(function(){
 			if(!$(this).attr("disabled")){
 				alert('打卡成功！');
@@ -35,15 +35,17 @@
 			}
 		})
 		
-		$(".start").click(function(){
+		$(".end").click(function(){
 			if(!$(this).attr("disabled")){
+				if(!$(".start").attr("disabled")){
+					alert("请先打上班卡");
+					return ;
+				}
 				alert('打卡成功！');
-				$(".start").attr("onclick","");
-				$(".start").attr("disabled",true);
+				$(".end").attr("onclick","");
+				$(".end").attr("disabled",true);
 			}
 		})
-		
-		
 		
 		$(".exit").click(function(){
 			var flag = confirm("是否确认退出？");
@@ -61,7 +63,7 @@
 	<div id="left">
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/emp/lookInfo?uid=${sessionScope.user.uid}">个人信息</a></li>
-			<li><a href="#">我的考勤</a></li>
+			<li><a href="${pageContext.request.contextPath}/checkon/lookMyCheck?${sessionScope.user.uid}">我的考勤</a></li>
 			<li><a href="#">我的奖惩</a></li>
 			<li><a href="#">部门职位</a></li>
 			<li><a href="#">我的薪资</a></li>
@@ -70,10 +72,10 @@
 			<li><a href="${pageContext.request.contextPath}/login.jsp" class="exit">退出</a></li>
 		</ul>
 	</div>
-	<div id="check">
+	<div id="check"><p align="center">
 		<input type="button" value="上班打卡" onclick="location.href='${pageContext.request.contextPath}/checkon/insertCheck?uid=${sessionScope.user.uid}'" class="start"/>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="下班打卡" onclick="location.href='${pageContext.request.contextPath}/checkon/updateCheck?uid=${sessionScope.user.uid}'" class="end"/>&nbsp;&nbsp;&nbsp;&nbsp;
-	</div>
+		<input type="button" value="下班打卡" onclick="location.href='${pageContext.request.contextPath}/checkon/updateCheck?uid=${sessionScope.user.uid}'" class="end"/>
+	</p></div>
 	<div id="right"></div>
 </body>
 </html>

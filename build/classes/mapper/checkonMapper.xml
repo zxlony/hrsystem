@@ -4,11 +4,11 @@
 <mapper namespace="com.iotek.ssm.dao.CheckonDao">
 	
 	<select id="queryCheckonByUid" resultType="Checkon">
-		select * from checkon where uid=#{uid}
+		select * from checkon where uid=#{uid} and clockDate like #{clockMonth}
 	</select>
 	
 	<select id="queryByUidAndClock" resultType="Checkon">
-		select * from checkon where uid=#{uid} and clockDate like #{clockDate}
+		select * from checkon where uid=#{0} and clockDate=#{1}
 	</select>
 	
 	<insert id="insertCheckon" parameterType="Checkon">
