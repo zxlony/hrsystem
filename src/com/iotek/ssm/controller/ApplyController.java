@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iotek.ssm.entity.Apply;
 import com.iotek.ssm.entity.Dept;
+import com.iotek.ssm.entity.Employee;
 import com.iotek.ssm.entity.Msg;
+import com.iotek.ssm.entity.Post;
 import com.iotek.ssm.entity.Resume;
 import com.iotek.ssm.entity.User;
 import com.iotek.ssm.service.ApplyService;
 import com.iotek.ssm.service.DeptService;
+import com.iotek.ssm.service.EmpService;
 import com.iotek.ssm.service.MsgService;
+import com.iotek.ssm.service.PostService;
 import com.iotek.ssm.service.ResumeService;
 import com.iotek.ssm.service.UserService;
 
@@ -37,6 +41,10 @@ public class ApplyController {
 	private MsgService msgService;
 	@Autowired
 	private DeptService deptService;
+	@Autowired
+	private PostService postService;
+	@Autowired
+	private EmpService empService;
 	
 	@InitBinder
 	public void initBinder(ServletRequestDataBinder binder) {
@@ -92,24 +100,24 @@ public class ApplyController {
 		model.addAttribute("apply", apply);
 		return "showMyApply";
 	}
-	
+	/**
+	 * 游客确认面试
+	 */
 	@RequestMapping("interview")
 	public String interview(int aid) {
 		Apply apply = applyService.findApplyByAid(aid);
 		apply.setInterviewStatus("确认面试");
 		applyService.updateApply(apply);
-		User user = userService.findUserByName(apply.getUname());
-		Resume resume = resumeService.findResumeByUid(user.getUid());
-		String dname = resume.getJobApplied().split(" ")[0];
-		Dept dept = deptService.findDeptByDname(dname);
+		Dept dept = deptService.findDeptByDid(apply.getDid());
 		Msg msg = new Msg(-1, dept.getUid(), "部门有应聘者，请注意前去面试");
 		msgService.addMsg(msg);
 		return "user_index";
 	}
 	
 	@RequestMapping("mgrLookUserApply")
-	public String mgrLookUserApply(Model model) {
-		List<Apply> applies = applyService.findApplyByInterviewStatus();
+	public String mgrLookUserApply(Model model,int uid) {
+		Dept dept = deptService.findDeptByUid(uid);
+		List<Apply> applies = applyService.findApplyByDidAndInterviewStatus(dept.getDid());
 		model.addAttribute("applies", applies);
 		return "showUserApply";
 		
@@ -122,14 +130,60 @@ public class ApplyController {
 		Apply apply = applyService.findApplyByAid(aid);
 		model.addAttribute("resume", resume);
 		model.addAttribute("apply", apply);
-		List<Msg> msgs = msgService.findMsgByUid(uid);
+		return "showUserResume_mgr";
+	}
+	
+	/**
+	 * 录用：游客-->员工，
+	 * 1.游客变成员工，2.插入员工信息，3.修改应聘信息，4.删除信息（msg）提醒
+	 */
+	@RequestMapping("hire")
+	public String hire(int uid1,int uid2) {
+		//将游客变成员工
+		User user = userService.findUserById(uid1);
+		user.setType(2);
+		userService.updateUser(user);
+		//添加员工信息
+		Resume resume = resumeService.findResumeByUid(uid1);
+		String[] split = resume.getJobApplied().split(" ");
+		String dname = split[0];
+		String pname = split[1];
+		Post post = postService.findPostByName(pname, dname);
+		Employee emp = new Employee(-1, resume.getUid(), post.getPid(), resume.getName(), 
+				resume.getSex(), resume.getAge(), resume.getEducation(), resume.getPhone(), 
+				resume.getEmail(), resume.getJobApplied(), resume.getStatus(), new Date(), 
+				resume.getHobby(), 0);
+		empService.addEmployee(emp);
+		//更新应聘信息
+		Apply apply = applyService.findApplyByUname(user.getUname());
+		apply.setInterviewStatus("已面试");
+		apply.setHiring(1);
+		applyService.updateApply(apply);
+		//删除一条消息提醒
+		List<Msg> msgs = msgService.findMsgByUid(uid2);
 		for (Msg msg : msgs) {
 			if(msg.getMsg().equals("部门有应聘者，请注意前去面试")) {
 				msgService.delMsg(msg.getMid());
-				return "showUserResume_mgr";
+				return "manager_index";
 			}
 		}
-		return "showUserResume_mgr";
+		return "manager_index";
+	}
+	
+	@RequestMapping("noHire")
+	public String noHire(int uid1,int uid2) {
+		User user = userService.findUserById(uid1);
+		Apply apply = applyService.findApplyByUname(user.getUname());
+		apply.setInterviewStatus("已面试");
+		applyService.updateApply(apply);
+		List<Msg> msgs = msgService.findMsgByUid(uid2);
+		for (Msg msg : msgs) {
+			if(msg.getMsg().equals("部门有应聘者，请注意前去面试")) {
+				msgService.delMsg(msg.getMid());
+				return "manager_index";
+			}
+		}
+		return "manager_index";
 	}
 	
 }

@@ -8,4 +8,8 @@ public interface DeptDao {
 	public List<Dept> queryAllDept();
 	
 	public Dept queryDeptByDname(String dname);
+
+	public Dept queryDeptByDid(int did);
+
+	public Dept queryDeptByUid(int uid);
 }

@@ -22,5 +22,12 @@
 		select * from dept where dname=#{dname}
 	</select>
 	
+	<select id="queryDeptByDid" parameterType="int" resultType="Dept">
+		select * from dept where did=#{did}
+	</select>
+	
+	<select id="queryDeptByUid" parameterType="int" resultType="Dept">
+		select * from dept where uid=#{uid}
+	</select>
 	
 </mapper>

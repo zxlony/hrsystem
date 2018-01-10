@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.EmployeeDao">
+	
+	<select id="queryEmpByUid" parameterType="int" resultType="Employee">
+		select * from employee where uid=#{uid}
+	</select>
+	
+	<insert id="insertEmployee" parameterType="Employee">
+		insert into employee(uid,pid,ename,sex,age,education,phone,email,station,status,hireDate,hobby,type)
+		values(#{uid},#{pid},#{ename},#{sex},#{age},#{education},#{phone},#{email},#{station},#{status},#{hireDate},#{hobby},#{type})
+	</insert>
+	
+	<update id="updateEmployee" parameterType="Employee">
+		update employee set pid=#{pid},age=#{age},education=#{education},phone=#{phone},
+			email=#{email},status=#{status},hobby=#{hobby},type=#{type} 
+		where uid=#{uid}
+	</update>
+	
+</mapper>

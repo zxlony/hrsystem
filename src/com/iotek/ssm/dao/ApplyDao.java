@@ -19,5 +19,5 @@ public interface ApplyDao {
 
 	public Apply queryApplyByUnameAndInterviewStatus(String uname);
 
-	public List<Apply> queryApplyByInterviewStatus();
+	public List<Apply> queryApplyByDidAndInterviewStatus(int did);
 }

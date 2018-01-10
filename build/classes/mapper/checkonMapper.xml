@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.CheckonDao">
+	
+	<select id="queryCheckonByUid" resultType="Checkon">
+		select * from checkon where uid=#{uid}
+	</select>
+	
+	<select id="queryByUidAndClock" resultType="Checkon">
+		select * from checkon where uid=#{uid} and clockDate like #{clockDate}
+	</select>
+	
+	<insert id="insertCheckon" parameterType="Checkon">
+		insert into checkon(uid,ename,clockDate,startTime,endTime,status)
+		values(#{uid},#{ename},#{clockDate},#{startTime},#{endTime},#{status})
+	</insert>
+	
+	<update id="updateCheckon" parameterType="Checkon">
+		update checkon set endTime=#{endTime},status=#{status} where cid=#{cid}
+	</update>
+	
+</mapper>

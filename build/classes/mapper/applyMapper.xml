@@ -12,8 +12,8 @@
 	</select>
 	
 	<insert id="insertApply" parameterType="Apply">
-		insert into apply(uname,deliveryTime,checkStatus,interviewStatus,interviewTime,hiring)
-		values(#{uname},#{deliveryTime},#{checkStatus},#{interviewStatus},#{interviewTime},#{hiring})
+		insert into apply(uname,deliveryTime,checkStatus,interviewStatus,interviewTime,hiring,did)
+		values(#{uname},#{deliveryTime},#{checkStatus},#{interviewStatus},#{interviewTime},#{hiring},#{did})
 	</insert>
 	
 	<delete id="deleteApply" parameterType="int">
@@ -34,8 +34,8 @@
 		select * from apply where uname=#{uname} and interviewStatus="按时面试"
 	</select>
 	
-	<select id="queryApplyByInterviewStatus" resultType="Apply">
-		select * from apply where interviewStatus="确认面试"
+	<select id="queryApplyByDidAndInterviewStatus" resultType="Apply">
+		select * from apply where did=#{did} and interviewStatus="确认面试"
 	</select>
 	
 </mapper>

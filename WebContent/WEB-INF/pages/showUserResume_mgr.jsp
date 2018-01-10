@@ -47,8 +47,11 @@
 			<td>${requestScope.resume.hobby}</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="button" value="面试" class="mianshi"/></td>
-			<td colspan="2" align="center"><input type="button" value="返回" onclick="javascript:history.back(-1);"/></td>
+			<td colspan="4" align="center"><input type="button" value="录用" 
+			onclick="location.href='${pageContext.request.contextPath}/apply/hire?uid1=${requestScope.resume.uid}&uid2=${sessionScope.user.uid}'"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="不录用" 
+			onclick="location.href='${pageContext.request.contextPath}/apply/noHire?uid1=${requestScope.resume.uid}&uid2=${sessionScope.user.uid}'"/>
+			</td>
 		</tr>
 	</table>
 </fieldset>

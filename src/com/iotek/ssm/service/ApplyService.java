@@ -19,5 +19,5 @@ public interface ApplyService {
 
 	public Apply findApplyByUnameAndInterviewStatus(String uname);
 
-	public List<Apply> findApplyByInterviewStatus();
+	public List<Apply> findApplyByDidAndInterviewStatus(int did);
 }

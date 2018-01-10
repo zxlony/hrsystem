@@ -25,4 +25,14 @@ public class DeptServiceImpl implements DeptService {
 		return deptDao.queryDeptByDname(dname);
 	}
 
+	@Override
+	public Dept findDeptByDid(int did) {
+		return deptDao.queryDeptByDid(did);
+	}
+
+	@Override
+	public Dept findDeptByUid(int uid) {
+		return deptDao.queryDeptByUid(uid);
+	}
+
 }

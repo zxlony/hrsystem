@@ -10,7 +10,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		alert($(".message").val());
+		var msg = $(".message").val();
+		if(msg!=undefined){
+			alert(msg);
+		}
 		
 		$(".exit").click(function(){
 			var flag = confirm("是否确认退出？");

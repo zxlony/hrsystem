@@ -51,8 +51,8 @@ public class ApplyServiceImpl implements ApplyService {
 	}
 
 	@Override
-	public List<Apply> findApplyByInterviewStatus() {
-		return applyDao.queryApplyByInterviewStatus();
+	public List<Apply> findApplyByDidAndInterviewStatus(int did) {
+		return applyDao.queryApplyByDidAndInterviewStatus(did);
 	}
 
 }

@@ -8,4 +8,8 @@ public interface DeptService {
 	public List<Dept> findAllDept();
 	
 	public Dept findDeptByDname(String dname);
+
+	public Dept findDeptByDid(int did);
+
+	public Dept findDeptByUid(int uid);
 }

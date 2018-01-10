@@ -10,13 +10,14 @@ public class Apply {
 	private String interviewStatus;
 	private Date interviewTime;
 	private int hiring;
+	private int did;
 
 	public Apply() {
 		super();
 	}
 
 	public Apply(int aid, String uname, Date deliveryTime, String checkStatus, String interviewStatus,
-			Date interviewTime, int hiring) {
+			Date interviewTime, int hiring, int did) {
 		super();
 		this.aid = aid;
 		this.uname = uname;
@@ -25,6 +26,7 @@ public class Apply {
 		this.interviewStatus = interviewStatus;
 		this.interviewTime = interviewTime;
 		this.hiring = hiring;
+		this.did = did;
 	}
 
 	public int getAid() {
@@ -83,11 +85,19 @@ public class Apply {
 		this.hiring = hiring;
 	}
 
+	public int getDid() {
+		return did;
+	}
+
+	public void setDid(int did) {
+		this.did = did;
+	}
+
 	@Override
 	public String toString() {
 		return "Apply [aid=" + aid + ", uname=" + uname + ", deliveryTime=" + deliveryTime + ", checkStatus="
 				+ checkStatus + ", interviewStatus=" + interviewStatus + ", interviewTime=" + interviewTime
-				+ ", hiring=" + hiring + "]";
+				+ ", hiring=" + hiring + ", did=" + did + "]";
 	}
 
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.PostDao">
+
+	<select id="queryPostByName" parameterType="String" resultType="Post">
+		select post.* from dept,post where dept.did=post.did and dept.dname=#{dname} and post.pname=#{pname}
+	</select>
+	
+</mapper>

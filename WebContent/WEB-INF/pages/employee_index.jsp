@@ -9,6 +9,42 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/checkon/check",
+			type:"post",
+			dataType:"text",
+			data:{},
+			success:function(data){
+				if(data=="1"){
+					$(".start").attr("onclick","");
+					$(".start").attr("disabled",true);
+				}else if(data=="2"){
+					$(".start").attr("onclick","");
+					$(".start").attr("disabled",true);
+					$(".end").attr("onclick","");
+					$(".end").attr("disabled",true);
+				}
+			}
+		})
+		
+		$(".start").click(function(){
+			if(!$(this).attr("disabled")){
+				alert('打卡成功！');
+				$(".start").attr("onclick","");
+				$(".start").attr("disabled",true);
+			}
+		})
+		
+		$(".start").click(function(){
+			if(!$(this).attr("disabled")){
+				alert('打卡成功！');
+				$(".start").attr("onclick","");
+				$(".start").attr("disabled",true);
+			}
+		})
+		
+		
+		
 		$(".exit").click(function(){
 			var flag = confirm("是否确认退出？");
 			if(flag){
@@ -24,7 +60,7 @@
 	<input type="hidden" value="${requestScope.msg.msg}" class="message">
 	<div id="left">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/#">个人信息</a></li>
+			<li><a href="${pageContext.request.contextPath}/emp/lookInfo?uid=${sessionScope.user.uid}">个人信息</a></li>
 			<li><a href="#">我的考勤</a></li>
 			<li><a href="#">我的奖惩</a></li>
 			<li><a href="#">部门职位</a></li>
@@ -33,6 +69,10 @@
 			<li><a href="#">其它</a></li>
 			<li><a href="${pageContext.request.contextPath}/login.jsp" class="exit">退出</a></li>
 		</ul>
+	</div>
+	<div id="check">
+		<input type="button" value="上班打卡" onclick="location.href='${pageContext.request.contextPath}/checkon/insertCheck?uid=${sessionScope.user.uid}'" class="start"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="下班打卡" onclick="location.href='${pageContext.request.contextPath}/checkon/updateCheck?uid=${sessionScope.user.uid}'" class="end"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	</div>
 	<div id="right"></div>
 </body>

@@ -58,13 +58,14 @@ public class ResumeController {
 	 */
 	@RequestMapping("insertResume")
 	public String insertResume(Resume resume,String post,Model model) {
+		Dept dept = deptService.findDeptByDname(resume.getJobApplied());
 		String jobApplied1 = resume.getJobApplied()+" "+post;
 		List<Recruit> allRecruit = recruitService.findAllRecruit();
 		for (Recruit recruit : allRecruit) {
 			if(jobApplied1.equals(recruit.getJob())) {
 				resume.setJobApplied(jobApplied1);
 				User user = userService.findUserById(resume.getUid());
-				Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0);
+				Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0,dept.getDid());
 				applyService.addApply(apply);
 				resumeService.addResume(resume);
 				return "user_index";
@@ -84,6 +85,7 @@ public class ResumeController {
 	 */
 	@RequestMapping("updateResume")
 	public String updateResume(Resume resume,String post,Model model) {
+		Dept dept = deptService.findDeptByDname(resume.getJobApplied());
 		String jobApplied1 = resume.getJobApplied()+" "+post;
 		resume.setJobApplied(jobApplied1);
 		Resume resume1 = resumeService.findResumeByUid(resume.getUid());
@@ -103,7 +105,7 @@ public class ResumeController {
 						if(oldApply!=null) {
 							applyService.delApply(oldApply.getAid());
 						}
-						Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0);
+						Apply apply = new Apply(-1, user.getUname(), new Date(), "未查看", "未面试", null, 0,dept.getDid());
 						applyService.addApply(apply);
 						resumeService.updateResume(resume);
 						return "user_index";
