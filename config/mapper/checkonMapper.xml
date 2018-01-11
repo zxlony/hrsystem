@@ -4,7 +4,7 @@
 <mapper namespace="com.iotek.ssm.dao.CheckonDao">
 	
 	<select id="queryCheckonByUid" resultType="Checkon">
-		select * from checkon where uid=#{uid} and clockDate like #{clockMonth}
+		select * from checkon where uid=#{0} and clockDate like #{1}
 	</select>
 	
 	<select id="queryByUidAndClock" resultType="Checkon">

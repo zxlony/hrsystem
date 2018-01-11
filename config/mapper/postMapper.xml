@@ -7,4 +7,20 @@
 		select post.* from dept,post where dept.did=post.did and dept.dname=#{dname} and post.pname=#{pname}
 	</select>
 	
+	<select id="queryPostByPid" parameterType="int" resultType="Post">
+		select * from post where pid=#{pid}
+	</select>
+	
+	<insert id="insertPost" parameterType="Post">
+		insert into post(pname,did)values(#{pname},#{did})
+	</insert>
+	
+	<delete id="deletePost" parameterType="int">
+		delete from post where pid=#{pid}
+	</delete>
+	
+	<update id="updatePost" parameterType="Post">
+		update post set pname=#{pname},did={#did} where pid={#pid}
+	</update>
+	
 </mapper>

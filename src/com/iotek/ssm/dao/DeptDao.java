@@ -10,6 +10,14 @@ public interface DeptDao {
 	public Dept queryDeptByDname(String dname);
 
 	public Dept queryDeptByDid(int did);
+	
+	public Dept queryDeptAndPostByDid(int did);
 
 	public Dept queryDeptByUid(int uid);
+	
+	public int insertDept(Dept dept);
+	
+	public int deleteDept(int did);
+	
+	public int updateDept(Dept dept);
 }

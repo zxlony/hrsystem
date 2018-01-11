@@ -63,9 +63,9 @@
 	<div id="left">
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/emp/lookInfo?uid=${sessionScope.user.uid}">个人信息</a></li>
-			<li><a href="${pageContext.request.contextPath}/checkon/lookMyCheck?${sessionScope.user.uid}">我的考勤</a></li>
+			<li><a href="${pageContext.request.contextPath}/checkon/lookMyCheck?uid=${sessionScope.user.uid}">我的考勤</a></li>
 			<li><a href="#">我的奖惩</a></li>
-			<li><a href="#">部门职位</a></li>
+			<li><a href="${pageContext.request.contextPath}/dept/empQueryAll">部门职位</a></li>
 			<li><a href="#">我的薪资</a></li>
 			<li><a href="${pageContext.request.contextPath}/user/changePwd">修改密码</a></li>
 			<li><a href="#">其它</a></li>

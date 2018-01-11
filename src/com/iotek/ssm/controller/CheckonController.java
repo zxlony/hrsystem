@@ -42,6 +42,9 @@ public class CheckonController {
 		return "2";
 	}
 	
+	/**
+	 * 上班打卡，插入考勤表
+	 */
 	@RequestMapping("insertCheck")
 	public String insertCheck(int uid) {
 		String clockDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -55,6 +58,9 @@ public class CheckonController {
 		return "employee_index";
 	}
 	
+	/**
+	 * 下班打卡，更新考勤表，通过计算时间确定出勤的状态
+	 */
 	@RequestMapping("updateCheck")
 	public String updateCheck(int uid) {
 		String clockDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -80,14 +86,17 @@ public class CheckonController {
 		return "employee_index";
 	}
 	
+	/**
+	 * 员工查看自己的出勤，默认是2018年1月
+	 */
 	@RequestMapping("lookMyCheck")
 	public String lookMyCheck(int uid,String year,String month,Model model) {
 		String clockMonth = null;
 		if(year==null||month==null) {
-			clockMonth = "2018-01";
-		}else {
-			clockMonth = year+"-"+month;
+			year = "2018";
+			month="01";
 		}
+		clockMonth = year+"-"+month+"%";
 		List<Checkon> checkons = checkonService.findCheckonByUid(uid, clockMonth);
 		int absence = 21;
 		if(checkons!=null) {
@@ -95,6 +104,10 @@ public class CheckonController {
 		}
 		model.addAttribute("checkons", checkons);
 		model.addAttribute("absence", absence);
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
 		return "showMyCheckon";
 	}
+	
+	
 }

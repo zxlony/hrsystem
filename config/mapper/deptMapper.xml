@@ -26,8 +26,24 @@
 		select * from dept where did=#{did}
 	</select>
 	
+	<select id="queryDeptAndPostByDid" resultMap="deptMap">
+		select dept.*,post.* from dept,post where dept.did=post.did and did=#{did}
+	</select>
+	
 	<select id="queryDeptByUid" parameterType="int" resultType="Dept">
 		select * from dept where uid=#{uid}
 	</select>
+	
+	<insert id="insertDept" parameterType="Dept">
+		insert into dept(dname,uid)values(#{dname},#{uid})
+	</insert>
+	
+	<delete id="deleteDept" parameterType="int">
+		delete from dept where did=#{did}
+	</delete>
+	
+	<update id="updateDept" parameterType="Dept">
+		update dept set dname=#{dname},uid=#{uid} where did=#{did}
+	</update>
 	
 </mapper>
