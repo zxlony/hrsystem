@@ -18,4 +18,8 @@
 		where uid=#{uid}
 	</update>
 	
+	<select id="queryEmpByPid" resultType="Employee">
+		select * from employee where pid=#{pid}
+	</select>
+	
 </mapper>

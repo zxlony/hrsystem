@@ -17,4 +17,24 @@ public class PostServiceImpl implements PostService {
 		return postDao.queryPostByName(pname, dname);
 	}
 
+	@Override
+	public Post findPostByPid(int pid) {
+		return postDao.queryPostByPid(pid);
+	}
+
+	@Override
+	public int addPost(Post post) {
+		return postDao.insertPost(post);
+	}
+
+	@Override
+	public int delPost(int pid) {
+		return postDao.deletePost(pid);
+	}
+
+	@Override
+	public int updatePost(Post post) {
+		return postDao.updatePost(post);
+	}
+
 }

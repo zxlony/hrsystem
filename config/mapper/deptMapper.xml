@@ -11,11 +11,16 @@
         <collection property="posts" ofType="Post">
             <id property="pid" column="pid"/>
             <result property="pname" column="pname"/>
+            <result property="did" column="did"/>
         </collection>
     </resultMap>
 
 	<select id="queryAllDept" resultMap="deptMap">
 		select dept.*,post.* from dept,post where dept.did=post.did
+	</select>
+	
+	<select id="queryAllDeptNoPost" resultType="Dept">
+		select * from dept
 	</select>
 	
 	<select id="queryDeptByDname" parameterType="String" resultType="Dept">
@@ -27,7 +32,7 @@
 	</select>
 	
 	<select id="queryDeptAndPostByDid" resultMap="deptMap">
-		select dept.*,post.* from dept,post where dept.did=post.did and did=#{did}
+		select dept.*,post.* from dept,post where dept.did=post.did and dept.did=#{did}
 	</select>
 	
 	<select id="queryDeptByUid" parameterType="int" resultType="Dept">

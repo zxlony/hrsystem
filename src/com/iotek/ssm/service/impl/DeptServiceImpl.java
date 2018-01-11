@@ -35,4 +35,29 @@ public class DeptServiceImpl implements DeptService {
 		return deptDao.queryDeptByUid(uid);
 	}
 
+	@Override
+	public Dept findDeptAndPostByDid(int did) {
+		return deptDao.queryDeptAndPostByDid(did);
+	}
+
+	@Override
+	public int addDept(Dept dept) {
+		return deptDao.insertDept(dept);
+	}
+
+	@Override
+	public int delDept(int did) {
+		return deptDao.deleteDept(did);
+	}
+
+	@Override
+	public int updateDept(Dept dept) {
+		return deptDao.updateDept(dept);
+	}
+
+	@Override
+	public List<Dept> findAllDeptNoPost() {
+		return deptDao.queryAllDeptNoPost();
+	}
+
 }

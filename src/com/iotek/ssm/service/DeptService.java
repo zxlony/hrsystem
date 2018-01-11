@@ -10,6 +10,17 @@ public interface DeptService {
 	public Dept findDeptByDname(String dname);
 
 	public Dept findDeptByDid(int did);
+	
+	public Dept findDeptAndPostByDid(int did);
 
 	public Dept findDeptByUid(int uid);
+	
+	public int addDept(Dept dept);
+	
+	public int delDept(int did);
+	
+	public int updateDept(Dept dept);
+
+	public List<Dept> findAllDeptNoPost();
+	
 }

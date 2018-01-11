@@ -1,5 +1,7 @@
 package com.iotek.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public int updateEmployee(Employee emp) {
 		return empDao.updateEmployee(emp);
+	}
+
+	@Override
+	public List<Employee> findEmpByPid(int pid) {
+		return empDao.queryEmpByPid(pid);
 	}
 
 }

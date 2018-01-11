@@ -20,4 +20,6 @@ public interface DeptDao {
 	public int deleteDept(int did);
 	
 	public int updateDept(Dept dept);
+
+	public List<Dept> queryAllDeptNoPost();
 }

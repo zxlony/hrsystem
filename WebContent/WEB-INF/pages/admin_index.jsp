@@ -21,7 +21,7 @@
                 </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">
-                <a href="#">部门管理</a>
+                <a href="${pageContext.request.contextPath}/dept/admQueryAll">部门管理</a>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">
                 <a href="javascript:;">培训管理</a>

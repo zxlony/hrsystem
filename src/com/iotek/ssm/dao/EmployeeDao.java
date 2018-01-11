@@ -1,5 +1,7 @@
 package com.iotek.ssm.dao;
 
+import java.util.List;
+
 import com.iotek.ssm.entity.Employee;
 
 public interface EmployeeDao {
@@ -8,5 +10,7 @@ public interface EmployeeDao {
 	public int insertEmployee(Employee emp);
 	
 	public int updateEmployee(Employee emp);
+
+	public List<Employee> queryEmpByPid(int pid);
 	
 }
