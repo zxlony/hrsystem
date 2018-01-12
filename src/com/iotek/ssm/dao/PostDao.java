@@ -14,4 +14,6 @@ public interface PostDao {
 	public int deletePost(int pid);
 	
 	public int updatePost(Post post);
+
+	public Post queryPostByPnameAndDid(String pname, int did);
 }

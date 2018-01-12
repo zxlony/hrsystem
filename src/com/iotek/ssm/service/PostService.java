@@ -12,4 +12,6 @@ public interface PostService {
 	public int delPost(int pid);
 
 	public int updatePost(Post post);
+
+	public Post findPostByPnameAndDid(String pname, int did);
 }

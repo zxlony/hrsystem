@@ -35,4 +35,9 @@ public class EmpServiceImpl implements EmpService {
 		return empDao.queryEmpByPid(pid);
 	}
 
+	@Override
+	public List<Employee> findEmpByType(int type) {
+		return empDao.queryEmpByType(type);
+	}
+
 }

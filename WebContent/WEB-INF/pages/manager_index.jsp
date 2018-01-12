@@ -47,7 +47,7 @@
                 <a href="javascript:;">通知管理</a>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/apply/mgrLookUserApply?uid=${sessionScope.user.uid}">面试通知</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#">培训通知</a></li>
+                    <li><a href="${pageContext.request.contextPath}/train/trainNotice?uid=${sessionScope.user.uid}">培训通知</a></li>
                 </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">

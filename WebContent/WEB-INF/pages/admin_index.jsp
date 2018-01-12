@@ -26,12 +26,16 @@
             <li onmouseover="display(this)" onmouseout="hide(this)">
                 <a href="javascript:;">培训管理</a>
                 <ul>
-                    <li><a href="#">增加培训</a></li>
-                    <li><a href="#">查看培训</a></li>
+                    <li><a href="${pageContext.request.contextPath}/train/add">增加培训</a></li>
+                    <li><a href="${pageContext.request.contextPath}/train/lookTrain">查看培训</a></li>
                 </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">
-                <a href="#">员工管理</a>
+                <a href="javascript:;">员工管理</a>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/emp/lookOnEmp">在职员工</a></li>
+                    <li><a href="${pageContext.request.contextPath}/emp/lookLeaveEmp">离职员工</a></li>
+                </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">
                 <a href="#">奖惩管理</a>
@@ -41,7 +45,6 @@
                 <ul>
                     <li><a href="#">查看薪资</a></li>
                     <li><a href="#">查看工资异议</a></li>
-
                 </ul>
             </li>
             <li onmouseover="display(this)" onmouseout="hide(this)">

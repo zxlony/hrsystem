@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.TrainDao">
+
+	<resultMap id="trainMap" type="Train">
+        <id property="tid" column="tid"/>
+        <result property="tname" column="tname"/>
+        <result property="time" column="time"/>
+
+        <association property="dept" javaType="Dept">
+            <id property="did" column="did"/>
+            <result property="dname" column="dname"/>
+            <result property="uid" column="uid"/>
+        </association>
+    </resultMap>
+
+	<select id="queryTrainAll" resultMap="trainMap">
+		select train.*,dept.* from train,dept where train.did=dept.did
+	</select>
+	
+	<select id="queryTrainByTid" parameterType="int" resultMap="trainMap">
+		select train.*,dept.* from train,dept where train.did=dept.did and train.tid=#{tid}
+	</select>
+	
+	<select id="queryTrainByDid" resultType="Train">
+		select * from train where did=#{did}
+	</select>
+	
+	<insert id="insertTrain" parameterType="Train">
+		insert into train(tname,time,did)values(#{tname},#{time},#{dept.did})
+	</insert>
+	
+	<delete id="deleteTrain" parameterType="int">
+		delete from train where tid=#{tid}
+	</delete>
+	
+	<update id="updateTrain" parameterType="Train">
+		update train set tname=#{tname},time=#{time},did=#{dept.did} where tid=#{tid}
+	</update>
+	
+</mapper>

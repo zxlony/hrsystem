@@ -13,4 +13,6 @@ public interface EmployeeDao {
 
 	public List<Employee> queryEmpByPid(int pid);
 	
+	public List<Employee> queryEmpByType(int type);
+	
 }

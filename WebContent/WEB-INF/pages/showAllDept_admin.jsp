@@ -10,11 +10,26 @@
 <script type="text/javascript">
 $(function(){
 	$(".plist").hide();
+	$(".adddept").hide();
+	$(".addpost").hide();
+    var pname = $(":text[name='pname']").val();
+	if(pname!=""){
+		$(":text[name='pname']").parents(".plist").show();
+	}
+	
 	$("#dlist li .dname").each(function(id,item){
 		$(this).click(function(){
 			$(".plist").hide();
 			$(".plist").eq(id).show();
 		})
+	})
+	
+	$(".insertdept").click(function(){
+		$(".adddept").show();
+	})
+	
+	$(".insertpost").click(function(){
+		$(".addpost").show();
 	})
 })
 </script>
@@ -39,11 +54,11 @@ $(function(){
 			</li>
 		</c:forEach>
 			<li style="width:50%; margin:5px auto;">
-				<a href="#"><img alt="增加" src="${pageContext.request.contextPath}/img/add.png"/></a>&nbsp;
+				<a href="#" class="insertdept"><img alt="增加" src="${pageContext.request.contextPath}/img/add.png"/></a>&nbsp;
 			</li>
 		</ul>
 		<c:if test="${empty requestScope.deptmt}">
-		<form action="${pageContext.request.contextPath}/dept/addDept" method="post">
+		<form action="${pageContext.request.contextPath}/dept/addDept" method="post" class="adddept">
 			<table cellpadding="8" cellspacing="0">
 			<tr>
 				<td colspan="2" align="center">增加部门</td>
@@ -89,19 +104,20 @@ $(function(){
 			</li>
 		</c:forEach>
 			<li style="width:50%; margin:5px auto;">
-				<a href="#"><img alt="增加" src="${pageContext.request.contextPath}/img/add.png"/></a>&nbsp;
+				<a href="#" class="insertpost"><img alt="增加" src="${pageContext.request.contextPath}/img/add.png"/></a>&nbsp;
 			</li>
 		</ul>
 		
-		<c:if test="${empty requestScope.deptmt}">
-		<form action="${pageContext.request.contextPath}/dept/addDept" method="post">
+		<c:if test="${empty requestScope.jobPost}">
+		<form action="${pageContext.request.contextPath}/post/addPost" method="post" class="addpost">
+			<input type="hidden" name="did" value="${dept.did}"/>
 			<table cellpadding="8" cellspacing="0">
 			<tr>
-				<td colspan="2" align="center">增加部门</td>
+				<td colspan="2" align="center">增加职位</td>
 			</tr>
 			<tr>
-				<td>部门名称</td>
-				<td><input type="text" name="dname"></td>
+				<td>职位名称</td>
+				<td><input type="text" name="pname"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="增加"></td>
@@ -109,16 +125,18 @@ $(function(){
 			</table>
 		</form>
 		</c:if>
-		<c:if test="${!empty requestScope.deptmt}">
-		<form action="${pageContext.request.contextPath}/dept/update" method="post">
-			<input type="hidden" value="${requestScope.deptmt.did}" name="did"/>
+		<c:if test="${!empty requestScope.jobPost}">
+		<c:if test="${dept.did==requestScope.jobPost.did}">
+		<form action="${pageContext.request.contextPath}/post/update" method="post">
+			<input type="hidden" name="did" value="${dept.did}"/>
+			<input type="hidden" name="pid" value="${requestScope.jobPost.pid}"/>
 			<table cellpadding="8" cellspacing="0">
 			<tr>
-				<td colspan="2" align="center">修改部门</td>
+				<td colspan="2" align="center">修改职位</td>
 			</tr>
 			<tr>
-				<td>部门名称</td>
-				<td><input type="text" name="dname" value="${requestScope.deptmt.dname}"></td>
+				<td>职位名称</td>
+				<td><input type="text" name="pname" value="${requestScope.jobPost.pname}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="修改"></td>
@@ -126,7 +144,7 @@ $(function(){
 			</table>
 		</form>
 		</c:if>
-		
+		</c:if>
 		
 	</div>
 	</c:forEach>

@@ -66,7 +66,6 @@ public class DeptController {
 	
 	@RequestMapping("addDept")
 	public String addDept(Dept dept,Model model) {
-		System.out.println(dept);
 		Dept dept1 = deptService.findDeptByDname(dept.getDname());
 		if(dept1!=null) {
 			model.addAttribute("error", "增加的部门已存在");

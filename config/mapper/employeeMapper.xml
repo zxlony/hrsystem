@@ -22,4 +22,8 @@
 		select * from employee where pid=#{pid}
 	</select>
 	
+	<select id="queryEmpByType" resultType="Employee">
+		select * from employee where type=#{type}
+	</select>
+	
 </mapper>

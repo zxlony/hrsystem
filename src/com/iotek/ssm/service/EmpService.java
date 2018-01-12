@@ -12,4 +12,6 @@ public interface EmpService {
 	public int updateEmployee(Employee emp);
 
 	public List<Employee> findEmpByPid(int pid);
+	
+	public List<Employee> findEmpByType(int type);
 }

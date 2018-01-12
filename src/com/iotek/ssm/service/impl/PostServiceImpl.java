@@ -37,4 +37,9 @@ public class PostServiceImpl implements PostService {
 		return postDao.updatePost(post);
 	}
 
+	@Override
+	public Post findPostByPnameAndDid(String pname, int did) {
+		return postDao.queryPostByPnameAndDid(pname, did);
+	}
+
 }

@@ -20,7 +20,11 @@
 	</delete>
 	
 	<update id="updatePost" parameterType="Post">
-		update post set pname=#{pname},did={#did} where pid={#pid}
+		update post set pname=#{pname},did=#{did} where pid=#{pid}
 	</update>
+	
+	<select id="queryPostByPnameAndDid" resultType="Post">
+		select * from post where pname=#{0} and did=#{1}
+	</select>
 	
 </mapper>
