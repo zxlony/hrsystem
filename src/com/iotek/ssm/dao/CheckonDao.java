@@ -13,4 +13,6 @@ public interface CheckonDao {
 	public Checkon queryByUidAndClock(int uid,String clockDate);
 	
 	public int updateCheckon(Checkon checkon);
+	
+	public int getStatusCount(int uid,String status);
 }

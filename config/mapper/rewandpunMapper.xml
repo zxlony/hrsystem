@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.RewandpunDao">
+	
+	<select id="queryRapByRptime" parameterType="String" resultType="Rewandpun">
+		select * from rewandpun where rptime like #{rptime}
+	</select>
+	
+	<select id="queryRapByRptimeAndUid" resultType="Rewandpun">
+		select * from rewandpun where rptime like #{0} and uid=#{1}
+	</select>
+	
+	<insert id="insertRap" parameterType="Rewandpun">
+		insert into rewandpun(uid,ename,cause,rptime,money,type)
+		values(#{uid},#{ename},#{cause},#{rptime},#{money},#{type})
+	</insert>
+	
+</mapper>

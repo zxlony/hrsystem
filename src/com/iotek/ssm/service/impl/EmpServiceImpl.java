@@ -40,4 +40,9 @@ public class EmpServiceImpl implements EmpService {
 		return empDao.queryEmpByType(type);
 	}
 
+	@Override
+	public int updateEmpPidAndStation(Employee emp) {
+		return empDao.updateEmpPidAndStation(emp);
+	}
+
 }

@@ -109,5 +109,34 @@ public class CheckonController {
 		return "showMyCheckon";
 	}
 	
+	/**
+	 * 管理员查看员工的出勤，默认是2018年1月
+	 */
+	@RequestMapping("lookEmpCheckon")
+	public String lookEmpCheckon(int uid,String year,String month,Model model) {
+		String clockMonth = null;
+		if(year==null||month==null) {
+			year = "2018";
+			month="01";
+		}
+		clockMonth = year+"-"+month+"%";
+		List<Checkon> checkons = checkonService.findCheckonByUid(uid, clockMonth);
+		int absence = 21;
+		if(checkons!=null) {
+			absence = 21-checkons.size();
+		}
+		model.addAttribute("uid", uid);
+		model.addAttribute("checkons", checkons);
+		model.addAttribute("absence", absence);
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		return "showEmpCheckon";
+	}
+	
+	@RequestMapping("back")
+	public String back() {
+		return "redirect:/emp/lookOnEmp";
+	}
+	
 	
 }

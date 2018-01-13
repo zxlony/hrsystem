@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,9 +10,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#mianshi").hide();
-		$(".mianshi").click(function(){
-			$("#mianshi").show();
+		$("#shang").hide();
+		$(".shang").click(function(){
+			$("#shang").show();
+		})
+		$(".quxiao").click(function(){
+			$("#shang").hide();
 		})
 	})
 </script>
@@ -51,12 +54,29 @@
 		<input type="button" value="取消" class="quxiao"/>
 	</p>
 </fieldset>
-<form action="${pageContext.request.contextPath}/apply/updateApply?aid=${requestScope.apply.aid}" method="post">
-<fieldset style="width: 650px;margin: 0 auto;" id="mianshi">
-	<p align="center">
-		<input type="date" name="interviewTime"/>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="确认"/>
-	</p>
+<form action="${pageContext.request.contextPath}/rap/insert?uid=${requestScope.emp.uid}&ename=${requestScope.emp.ename}" method="post">
+<fieldset style="width: 650px;margin: 0 auto;" id="shang">
+	<table cellpadding="10" cellspacing="0" align="center">
+	<tr>
+		<td colspan="2" align="center"><h2>赏</h2></td>
+	</tr>
+	<tr>
+		<td>奖赏理由</td>
+		<td><input type="text" name="cause"/></td>
+	</tr>
+	<tr>
+		<td>奖　　金</td>
+		<td><input type="number" name="money"/></td>
+	</tr>
+	<tr>
+		<td>时　　间</td>
+		<td><input type="date" name="rptime"/></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="submit" value="确认"/></td>
+	</tr>
+	</table>
 </fieldset>
+</form>
 </body>
 </html>

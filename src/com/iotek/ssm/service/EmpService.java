@@ -14,4 +14,6 @@ public interface EmpService {
 	public List<Employee> findEmpByPid(int pid);
 	
 	public List<Employee> findEmpByType(int type);
+
+	public int updateEmpPidAndStation(Employee emp);
 }

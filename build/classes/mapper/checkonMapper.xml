@@ -20,4 +20,8 @@
 		update checkon set endTime=#{endTime},status=#{status} where cid=#{cid}
 	</update>
 	
+	<select id="getStatusCount" resultType="int">
+		select count(*) from checkon where uid=#{0} and status=#{1}
+	</select>
+	
 </mapper>
